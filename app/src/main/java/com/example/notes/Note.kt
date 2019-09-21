@@ -1,4 +1,4 @@
-package com.example.trabalho_unidadeii
+package com.example.notes
 
 data class Note (
     var title: String,
