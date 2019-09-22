@@ -7,7 +7,9 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplicationtest.R
 import com.example.myapplicationtest.adapter.NoteAdapter
 import com.example.myapplicationtest.domain.Note
@@ -32,10 +34,36 @@ class MainActivity : AppCompatActivity() {
         initRecycler()
     }
 
+    private fun initSwipeDelete(){
+        val swipe = object : ItemTouchHelper.SimpleCallback(
+            0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT ){
+
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean = false
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                notes.removeAt(position)
+                noteAdapter.notifyItemRemoved(position)
+            }
+
+        }
+
+        val itemTouchHelper = ItemTouchHelper(swipe)
+        itemTouchHelper.attachToRecyclerView(recyclerViewNotes)
+
+
+    }
+
+
     fun initRecycler(){
         addNote()
         recyclerViewNotes.layoutManager = LinearLayoutManager(this)
         recyclerViewNotes.adapter = noteAdapter
+        initSwipeDelete()
 
     }
 
