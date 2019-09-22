@@ -5,6 +5,7 @@ This folder contains the implementation of the notepad app. Given this, it refer
 
 - [Prerequisites](#prerequisites) - Project prerequisites.
 - [Project Rules](#project-rules) - Project Rules of notepad app.
+- [References](#references) - Reference links.
 - [Authors](#authors) - Project authors.
 
 
@@ -33,6 +34,12 @@ B. Clicking on a note opens the note for editing;
 i.
 In this case it does not open the dialog since it is an edition
 ç. When you long click on a note, the note is deleted and the list updated
+
+## References
+
+:link: [Working with RecyclerView in Android & Kotlin](https://medium.com/@hinchman_amanda/working-with-recyclerview-in-android-kotlin-84a62aef94ec)  
+:link: [Menus](https://developer.android.com/guide/topics/ui/menus?hl=pt-br)
+
 
 ## Authors 
 
