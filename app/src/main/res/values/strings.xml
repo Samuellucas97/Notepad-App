@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Notes</string>
+    <string name="app_name">MyApplicationTest</string>
     <string name="cancelar">Cancelar</string>
     <string name="gravar">Gravar</string>
     <string name="adicionar">Adicionar</string>

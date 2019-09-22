@@ -1,9 +1,11 @@
-package com.example.notes
+package com.example.notes.activies
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import com.example.notes.dialog.MyEditDialog
+import com.example.notes.R
 import kotlinx.android.synthetic.main.activity_main2.*
 
 class Main2Activity : AppCompatActivity() {
@@ -20,11 +22,13 @@ class Main2Activity : AppCompatActivity() {
     }
 
     fun openEditDialog(view: View) {
-        MyEditDialog.show(supportFragmentManager, object : MyEditDialog.OnTextListener {
-            override fun onSetText(text: String) {
-                Toast.makeText(this@Main2Activity, "Texto: $text", Toast.LENGTH_SHORT).show()
-            }
-        })
+        MyEditDialog.show(
+            supportFragmentManager,
+            object : MyEditDialog.OnTextListener {
+                override fun onSetText(text: String) {
+                    Toast.makeText(this@Main2Activity, "Texto: $text", Toast.LENGTH_SHORT).show()
+                }
+            })
     }
 
 

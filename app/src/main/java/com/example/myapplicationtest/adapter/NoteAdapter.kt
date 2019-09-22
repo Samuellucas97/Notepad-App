@@ -1,15 +1,17 @@
-package com.example.notes
+package com.example.myapplicationtest.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplicationtest.R
+import com.example.myapplicationtest.domain.Note
 import kotlinx.android.synthetic.main.item_note.view.*
 
 class NoteAdapter (
-    private val notes: List<Note>,
-    private val callback: (Note) -> Unit
+    private val notes: List<Note>
+    , private val callback: (Note) -> Unit
 ): RecyclerView.Adapter<NoteAdapter.ViewHolder>(){
 
     class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){

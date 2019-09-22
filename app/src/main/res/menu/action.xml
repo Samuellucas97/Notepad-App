@@ -5,6 +5,8 @@
     <item android:icon="@drawable/adicionar"
         android:id="@+id/action_add"
         android:title="@string/adicionar"
+
         app:showAsAction="always" />
 
 </menu>
+
