@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,7 +19,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     private var notes = mutableListOf<Note>()
-    private var noteAdapter = NoteAdapter(notes, this::onNoteItemClick)
+    private var noteAdapter = NoteAdapter(notes, this::onNoteItemClick, this::onNoteItemLongClick)
 
     private fun onNoteItemClick(note: Note) {
         val intent = Intent(this, Main2Activity::class.java)
@@ -26,6 +27,24 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra("title", note.title)
         startActivityForResult(intent, 10)
     }
+
+    private fun onNoteItemLongClick(note: Note): Boolean{
+
+        var positionNote: Int = 0
+        for( i in notes.indices){
+            if( notes[i] === note){
+                positionNote = i
+            }
+        }
+
+        notes.removeAt(positionNote)
+        noteAdapter.notifyItemRemoved(positionNote)
+
+
+        Toast.makeText(this, "Removendo anotação $note", Toast.LENGTH_SHORT).show()
+        return true
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

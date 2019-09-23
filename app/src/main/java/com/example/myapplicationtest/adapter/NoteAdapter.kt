@@ -10,8 +10,9 @@ import com.example.myapplicationtest.domain.Note
 import kotlinx.android.synthetic.main.item_note.view.*
 
 class NoteAdapter (
-    private val notes: List<Note>
-    , private val callback: (Note) -> Unit
+    private val notes: List<Note>,
+    private val callback: (Note) -> Unit,
+    private val callbackTwop: (Note) -> Boolean
 ): RecyclerView.Adapter<NoteAdapter.ViewHolder>(){
 
     class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
@@ -28,6 +29,11 @@ class NoteAdapter (
         viewHolder.itemView.setOnClickListener {
             val note = notes[viewHolder.adapterPosition]
             callback(note)
+        }
+
+        viewHolder.itemView.setOnLongClickListener{
+            val note = notes[viewHolder.adapterPosition]
+            callbackTwop(note)
         }
 
         return viewHolder
