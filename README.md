@@ -40,8 +40,9 @@ In this case it does not open the dialog since it is an edition
 :link: [Working with RecyclerView in Android & Kotlin](https://medium.com/@hinchman_amanda/working-with-recyclerview-in-android-kotlin-84a62aef94ec)  
 :link: [Menus](https://developer.android.com/guide/topics/ui/menus?hl=pt-br)  
 :link: [Android: Utilizando onActivityResult(), startActivityForResult() e setResult()](https://blog.masterdaweb.com/programacao-1/android/android-utilizando-onactivityresult-startactivityforresult-e-setresult/)  
-:link: [Como gerar resultados com uma Activity](https://developer.android.com/training/basics/intents/result?hl=pt-br)
-
+:link: [Como gerar resultados com uma Activity](https://developer.android.com/training/basics/intents/result?hl=pt-br)  
+:link: [Android RecyclerView addition & removal of items
+](https://stackoverflow.com/questions/26076965/android-recyclerview-addition-removal-of-items)
 
 ## Authors 
 
