@@ -43,7 +43,7 @@ class NoteAdapter (
     override fun getItemCount(): Int = notes.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val (title, text) = notes[position]
+        val (id, title, text) = notes[position]
 
         holder.txtTitle.text = title
     }

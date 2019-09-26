@@ -11,12 +11,15 @@ import android.widget.Toast
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.applicationdatabase.repository.NoteSQLiteRepository
 import com.example.myapplicationtest.R
 import com.example.myapplicationtest.adapter.NoteAdapter
 import com.example.myapplicationtest.domain.Note
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var noteSQLiteRepositoryNote: NoteSQLiteRepository
 
     private var notes = mutableListOf<Note>()
     private var noteAdapter = NoteAdapter(notes, this::onNoteItemClick, this::onNoteItemLongClick)
@@ -38,6 +41,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         notes.removeAt(positionNote)
+        noteSQLiteRepositoryNote.remove(note)
         noteAdapter.notifyItemRemoved(positionNote)
 
 
@@ -50,6 +54,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        noteSQLiteRepositoryNote = NoteSQLiteRepository(this)
         initRecycler()
     }
 
@@ -87,13 +92,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addNote() {
-        notes.add( Note("Necessidades", "bolo de chocolates, dormir, orar, ir para a igreja") )
-        notes.add( Note("Series", "How i meet your mother") )
-        notes.add( Note("Curiosidades", "XX") )
-        notes.add( Note("Doces preferidos", "XX") )
-        notes.add( Note("Filmes ainda não assistidos", "XXXX") )
-        notes.add( Note("Restaurantes", "XXX") )
-        notes.add( Note("Livros", "XXXX") )
+        val notesRepository = noteSQLiteRepositoryNote.searchAll()
+
+        for (i in notesRepository.indices) {
+            notes.add(notesRepository[i])
+        }
 
     }
 
@@ -119,8 +122,11 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
 
-                    if ( isNewNote)
-                        notes.add(Note(newTitle, newDescription))
+                    if ( isNewNote) {
+                        val note: Note = Note(title = newTitle, description = newDescription)
+                        noteSQLiteRepositoryNote.save(note)
+                        notes.add(note)
+                    }
 
                     recyclerViewNotes.adapter = noteAdapter
                 }
